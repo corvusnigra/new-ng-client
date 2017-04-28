@@ -1,13 +1,13 @@
 export class Employe {
-
+    public id: string;
     public firstName: string;
     public lastName: string;
     public salary: number;
     public birthday: string;
     public active: boolean;
 
-    constructor(firstName, lastName, salary, birthday, active ){
-
+    constructor(id, firstName, lastName, salary, birthday, active ){
+        this.id = id
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
