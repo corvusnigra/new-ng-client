@@ -11,6 +11,7 @@ import { EmployeEditComponent } from './employe-edit/employe-edit.component';
 import { EmployeDetailComponent } from './employe-detail/employe-detail.component';
 import { ListDepartmentsComponent } from './list-departments/list-departments.component';
 import { DepartmentEditComponent } from './department-edit/department-edit.component';
+import {EmployeService} from "./shared/employe.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { DepartmentEditComponent } from './department-edit/department-edit.compo
     MaterializeModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    EmployeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
