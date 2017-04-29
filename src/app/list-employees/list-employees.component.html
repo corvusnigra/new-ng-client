@@ -30,7 +30,11 @@
         <td>{{employe.lastName}}</td>
         <td>{{employe.salary}}</td>
         <td>{{employe.birthday}}</td>
-        <td>{{employe.active}}</td>
+        <td>
+            <span *ngIf="employe.active">Работает</span>
+            <span *ngIf="!employe.active">Уволен</span>
+        </td>
+
         <td><a class="waves-effect waves-light btn" (click)="detailEmploye(employe)">Детали</a></td>
     </tr>
     </tbody>
