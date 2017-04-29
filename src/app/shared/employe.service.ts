@@ -6,7 +6,7 @@ import {Http, Response} from "@angular/http";
 @Injectable()
 export class EmployeService {
     // адрес сервиса
-    private url = "http://localhost:3000/api/employes";
+    private url = "http://localhost:2403/employees";
 
     constructor(private http: Http) {
     }
@@ -20,7 +20,7 @@ export class EmployeService {
     }
 
     public getEmploye(id: string): Observable<Employe> {
-        let employe = this.http.get(this.url + "/" + id)
+        let employe = this.http.get(this.url + '/' + id)
             .map(this.extractEmploye)
             .catch(this.handleError);
         return employe;
@@ -53,7 +53,7 @@ export class EmployeService {
         let employe: Employe;
 
         employe = new Employe(
-            res._id,
+            res.id,
             res.firstName,
             res.lastName,
             res.salary,
@@ -69,7 +69,7 @@ export class EmployeService {
         let employees: Employe[] = [];
         for (let i = 0; i < res.length; i++) {
             employees.push(new Employe(
-                res[i]._id,
+                res[i].id,
                 res[i].firstName,
                 res[i].lastName,
                 res[i].salary,

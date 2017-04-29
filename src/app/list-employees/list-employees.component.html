@@ -11,3 +11,27 @@
         </form>
     </div>
 </nav>
+
+<table>
+    <thead>
+    <tr>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>salary</th>
+        <th>birthday</th>
+        <th>active</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let employe of employees">
+        <td>{{employe.firstName}}</td>
+        <td>{{employe.lastName}}</td>
+        <td>{{employe.salary}}</td>
+        <td>{{employe.birthday}}</td>
+        <td>{{employe.active}}</td>
+        <td><a class="waves-effect waves-light btn" (click)="detailEmploye(employe)">Детали</a></td>
+    </tr>
+    </tbody>
+</table>
