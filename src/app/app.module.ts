@@ -12,6 +12,7 @@ import { EmployeDetailComponent } from './employe-detail/employe-detail.componen
 import { ListDepartmentsComponent } from './list-departments/list-departments.component';
 import { DepartmentEditComponent } from './department-edit/department-edit.component';
 import {EmployeService} from "./shared/employe.service";
+import {SearchPipe} from "./shared/search.pipe";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {EmployeService} from "./shared/employe.service";
     EmployeEditComponent,
     EmployeDetailComponent,
     ListDepartmentsComponent,
-    DepartmentEditComponent
+    DepartmentEditComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

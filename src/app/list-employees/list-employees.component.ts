@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EmployeService} from "../shared/employe.service";
 import {Employe} from "../shared/employe";
 import { Router } from "@angular/router";
+import {SearchPipe} from "../shared/search.pipe";
 
 @Component({
   selector: 'app-list-employees',
@@ -10,6 +11,7 @@ import { Router } from "@angular/router";
 })
 export class ListEmployeesComponent implements OnInit {
   employees: Employe[];
+  term: string;
 
   constructor(private service: EmployeService, private router: Router) { }
 
@@ -18,6 +20,7 @@ export class ListEmployeesComponent implements OnInit {
       this.employees = employees;
     });
   }
+
 
   detailEmploye(employe: Employe) {
     this.router.navigate(['employees', 'detail', employe.id]);
