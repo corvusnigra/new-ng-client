@@ -13,9 +13,14 @@ export class SearchPipe implements PipeTransform {
         }
         if (category && category !== ' ' && Array.isArray(employees) ) {
             let search  =  category.trim().toLowerCase();
-            if (search) {
+            if (search.length > 2) {
                 return employees.filter(employe => {
-                    return employe.lastName.toLowerCase().indexOf(search) !== -1;
+                    let lastName = employe.lastName.toLowerCase();
+                    let firstName = employe.firstName.toLowerCase();
+                    // let fullName = `${firstName}${lastName}`.toLowerCase();
+                    if (lastName.indexOf(search) !== -1 || firstName.indexOf(search) !== -1 ) {
+                        return true;
+                    }
                 });
             }
         }
