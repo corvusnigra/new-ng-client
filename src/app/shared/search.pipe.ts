@@ -17,8 +17,12 @@ export class SearchPipe implements PipeTransform {
                 return employees.filter(employe => {
                     let lastName = employe.lastName.toLowerCase();
                     let firstName = employe.firstName.toLowerCase();
-                    // let fullName = `${firstName}${lastName}`.toLowerCase();
-                    if (lastName.indexOf(search) !== -1 || firstName.indexOf(search) !== -1 ) {
+                    let fullName = `${firstName} ${lastName}`.toLowerCase();
+                    let fullNameRev = `${lastName} ${firstName}`.toLowerCase();
+                    if (lastName.indexOf(search) !== -1
+                        || firstName.indexOf(search) !== -1
+                        || fullName.indexOf(search) !== -1
+                        || fullNameRev.indexOf(search) !== -1) {
                         return true;
                     }
                 });
