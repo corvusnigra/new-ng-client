@@ -37,7 +37,7 @@ export class EmployeService {
 
     public updateEmploye(employe: Employe) {
         return this.http.put(this.url + '/' + employe.id, employe)
-            .catch(this.handleError)
+            .catch(this.handleError);
     }
 
 
