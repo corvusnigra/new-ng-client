@@ -12,6 +12,8 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 export class EmployeEditComponent implements OnInit {
   model: any = {};
   editForm: FormGroup;
+  id: string;
+  errMessage: any;
   currentEmploye: Employe;
 
 
@@ -25,20 +27,18 @@ export class EmployeEditComponent implements OnInit {
   ngOnInit() {
      this.buildForm();
      this.getEmployeFromRoute();
-     console.log(this.currentEmploye);
   }
 
   getEmployeFromRoute() {
     this.activatedRoute.params.forEach((params: Params) => {
-      let id = params['id'];
-
-      this.service.getEmploye(id).subscribe(employe => {
-        this.editForm.patchValue(employe);
-        this.currentEmploye = employe;
-      });
+      this.id = params['id'];
     });
 
+    this.service.getEmploye(this.id).subscribe(employe => {
+      this.currentEmploye = employe;
+      this.editForm.patchValue(employe);
 
+    });
   }
 
   buildForm() {
@@ -52,11 +52,22 @@ export class EmployeEditComponent implements OnInit {
   }
 
   onSubmit(form) {
-     this.service.updateEmploye(this.currentEmploye ,form.value)
-         .subscribe(() => {
-           this.router.navigate(['employees']);
-         });
-     console.log(form);
+    this.currentEmploye.firstName = form.value.firstName;
+    this.currentEmploye.lastName = form.value.lastName;
+    this.currentEmploye.birthday = form.value.birthday;
+    this.currentEmploye.salary = form.value.salary;
+    this.currentEmploye.active = Array.isArray(form.value.active) ? form.value.active[0] : form.value.active;
+
+    console.log(this.currentEmploye);
+
+    this.service.updateEmploye(this.currentEmploye)
+        .subscribe(() => {
+          this.router.navigate(['employees']);
+        },
+            (err) => {
+             this.errMessage = err;
+            }
+        );
   }
 
 }

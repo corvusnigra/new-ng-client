@@ -28,14 +28,14 @@ export class EmployeService {
 
 
 // POST
-    public addEmploye(employe: Employe) {
+    public addEmploye(employe: Employe): Observable<Employe> {
         return this.http.post(this.url, employe)
             .catch(this.handleError);
     }
 
 // PUT
 
-    public updateEmploye(employe: Employe) {
+    public updateEmploye(employe: Employe): Observable<Employe> {
         return this.http.put(this.url + '/' + employe.id, employe)
             .catch(this.handleError);
     }
