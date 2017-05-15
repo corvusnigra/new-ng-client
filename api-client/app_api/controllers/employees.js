@@ -42,8 +42,12 @@ module.exports.employeesCreate = function (req, res) {
 
     Empl
         .create({
-            name: req.body.name,
-            price: req.body.price
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            salary: req.body.salary,
+            birthday: req.body.birthday,
+            active: req.body.active
+
         }, (err, product) => {
 
             if(err){

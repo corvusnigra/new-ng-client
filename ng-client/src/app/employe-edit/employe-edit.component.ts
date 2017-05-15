@@ -16,12 +16,6 @@ export class EmployeEditComponent implements OnInit {
   errMessage: any;
   currentEmploye: Employe;
 
-  // @ViewChild('inlineEditControl') inlineEditControl: ElementRef; // input DOM element
-  //
-  // autofocus(){
-  //   this.inlineEditControl.nativeElement.focus();
-  // }
-
 
 
   constructor(
@@ -41,13 +35,22 @@ export class EmployeEditComponent implements OnInit {
   getEmployeFromRoute() {
     this.activatedRoute.params.forEach((params: Params) => {
       this.id = params['id'];
+      if (this.id) {
+
+        this.service.getEmploye(this.id).subscribe(employe => {
+          this.currentEmploye = employe;
+          this.editForm.patchValue(employe);
+
+        });
+
+      } else  {
+        this.currentEmploye = new Employe(null, null, null, null, null, null);
+        this.editForm.patchValue(this.currentEmploye);
+
+      }
     });
 
-    this.service.getEmploye(this.id).subscribe(employe => {
-      this.currentEmploye = employe;
-      this.editForm.patchValue(employe);
 
-    });
   }
 
   buildForm() {
@@ -67,16 +70,26 @@ export class EmployeEditComponent implements OnInit {
     this.currentEmploye.salary = form.value.salary;
     this.currentEmploye.active = Array.isArray(form.value.active) ? form.value.active[0] : form.value.active;
 
-    console.log(this.currentEmploye);
+    if (this.currentEmploye.id) {
 
-    this.service.updateEmploye(this.currentEmploye)
-        .subscribe(() => {
-          this.router.navigate(['employees']);
-        },
-            (err) => {
-             this.errMessage = err;
-            }
-        );
+      this.service.updateEmploye(this.currentEmploye)
+          .subscribe(() => {
+                this.router.navigate(['employees']);
+              },
+              (err) => {
+                this.errMessage = err;
+              }
+          );
+    } else {
+
+      this.service.addEmploye( this.currentEmploye )
+          .subscribe(
+              () => this.goBack(),
+              error => this.errMessage = error
+          );
+    }
+
+
   }
 
 

@@ -18,6 +18,7 @@ import {DepartmentEditComponent} from "./department-edit/department-edit.compone
       },
       { path: "employees", component: ListEmployeesComponent },
       { path: "employees/edit/:id", component: EmployeEditComponent },
+      { path: "employees/edit", component: EmployeEditComponent },
       { path: "employees/detail/:id", component: EmployeDetailComponent },
       { path: "employees/departments", component: ListDepartmentsComponent },
       { path: "employees/departments/edit/:id", component: DepartmentEditComponent }

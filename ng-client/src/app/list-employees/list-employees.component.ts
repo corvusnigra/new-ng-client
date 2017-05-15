@@ -30,4 +30,8 @@ export class ListEmployeesComponent implements OnInit {
     this.router.navigate(['employees', 'detail', employe.id]);
   }
 
+  createEmploye() {
+    this.router.navigate(['employees', 'edit']);
+  }
+
 }
