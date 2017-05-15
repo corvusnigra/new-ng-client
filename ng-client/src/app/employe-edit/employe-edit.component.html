@@ -2,22 +2,22 @@
   <form class="col s12" name="form" (ngSubmit)="onSubmit(editForm)" [formGroup]="editForm" novalidate>
     <div class="row">
       <div class="input-field col s6">
-        <input id="username" type="text" class="validate" name="firstName" formControlName="firstName">
+        <input id="username" type="text" class="validate" name="firstName" formControlName="firstName" placeholder="Placeholder" >
         <label for="username">Имя</label>
       </div>
       <div class="input-field col s6">
-        <input id="lastname" type="tel" class="validate" name="lastName" formControlName="lastName">
+        <input id="lastname" type="tel" class="validate" name="lastName" formControlName="lastName" placeholder="Placeholder">
         <label for="lastname">Фамилия</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s4">
-        <input id="salary" type="number" class="validate" name="salary" formControlName="salary">
+        <input id="salary" type="number" class="validate" name="salary" formControlName="salary" placeholder="Placeholder">
         <label for="salary">Зарплата</label>
       </div>
       <div class="input-field col s4">
-        <input id="birthday" type="date" class="datepicker validate" materialize="pickadate" name="birthday" formControlName="birthday">
+        <input id="birthday" type="date" class="datepicker validate" materialize="pickadate" name="birthday" formControlName="birthday" placeholder="Placeholder">
         <label for="birthday">Дата рождения</label>
       </div>
       <div class="input-field col s4 remove-margin">

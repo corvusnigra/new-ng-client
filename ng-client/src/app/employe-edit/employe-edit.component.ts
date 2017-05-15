@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, NgForm} from "@angular/forms";
 import {EmployeService} from "../shared/employe.service";
 import {Employe} from "../shared/employe";
@@ -16,6 +16,12 @@ export class EmployeEditComponent implements OnInit {
   errMessage: any;
   currentEmploye: Employe;
 
+  // @ViewChild('inlineEditControl') inlineEditControl: ElementRef; // input DOM element
+  //
+  // autofocus(){
+  //   this.inlineEditControl.nativeElement.focus();
+  // }
+
 
 
   constructor(
@@ -28,6 +34,7 @@ export class EmployeEditComponent implements OnInit {
 
   ngOnInit() {
      this.buildForm();
+     // this.autofocus();
      this.getEmployeFromRoute();
   }
 
