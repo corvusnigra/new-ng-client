@@ -1,20 +1,27 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, EventEmitter} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, NgForm} from "@angular/forms";
 import {EmployeService} from "../shared/employe.service";
 import {Employe} from "../shared/employe";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+
+import {MaterializeAction} from 'angular2-materialize';
 
 @Component({
   selector: 'app-employe-edit',
   templateUrl: './employe-edit.component.html',
   styleUrls: ['./employe-edit.component.scss']
 })
+
 export class EmployeEditComponent implements OnInit {
   model: any = {};
   editForm: FormGroup;
   id: string;
   errMessage: any;
   currentEmploye: Employe;
+  btnValue: string;
+
+
+  modalActions = new EventEmitter<string|MaterializeAction>();
 
 
 
@@ -28,7 +35,6 @@ export class EmployeEditComponent implements OnInit {
 
   ngOnInit() {
      this.buildForm();
-     // this.autofocus();
      this.getEmployeFromRoute();
   }
 
@@ -36,7 +42,7 @@ export class EmployeEditComponent implements OnInit {
     this.activatedRoute.params.forEach((params: Params) => {
       this.id = params['id'];
       if (this.id) {
-
+        this.btnValue = 'Изменить';
         this.service.getEmploye(this.id).subscribe(employe => {
           this.currentEmploye = employe;
           this.editForm.patchValue(employe);
@@ -44,6 +50,7 @@ export class EmployeEditComponent implements OnInit {
         });
 
       } else  {
+        this.btnValue = 'Сохранить';
         this.currentEmploye = new Employe(null, null, null, null, null, null);
         this.editForm.patchValue(this.currentEmploye);
 
@@ -93,9 +100,32 @@ export class EmployeEditComponent implements OnInit {
   }
 
 
+  openModal() {
+    this.modalActions.emit({action:"modal",params:['open']});
+  }
+
+  closeModal() {
+    this.modalActions.emit({action:"modal",params:['close']});
+  }
+
   goBack() {
     this.router.navigate(['employees']);
   }
 
+
+  removeEmploye() {
+
+      this.service.deleteEmploye(this.currentEmploye).subscribe(
+          () => this.goBack(),
+          (error) => {
+            this.errMessage = error
+          }
+      )
+  }
+
+
+  removeConfirmEmploye() {
+    this.openModal();
+  }
 
 }

@@ -2,11 +2,11 @@
   <form class="col s12" name="form" (ngSubmit)="onSubmit(editForm)" [formGroup]="editForm" novalidate>
     <div class="row">
       <div class="input-field col s6">
-        <input id="username" type="text" class="validate" name="firstName" formControlName="firstName" placeholder="Placeholder" >
+        <input id="username" type="text" class="validate" name="firstName" formControlName="firstName" placeholder=" " >
         <label for="username">Имя</label>
       </div>
       <div class="input-field col s6">
-        <input id="lastname" type="tel" class="validate" name="lastName" formControlName="lastName" placeholder="Placeholder">
+        <input id="lastname" type="tel" class="validate" name="lastName" formControlName="lastName" placeholder=" ">
         <label for="lastname">Фамилия</label>
       </div>
     </div>
@@ -17,7 +17,22 @@
         <label for="salary">Зарплата</label>
       </div>
       <div class="input-field col s4">
-        <input id="birthday" type="date" class="datepicker validate" materialize="pickadate" name="birthday" formControlName="birthday" placeholder="Placeholder">
+        <input id="birthday" type="date" class="datepicker" materialize="pickadate" [materializeParams]="[{
+            selectMonths: true,
+            selectYears: 100,
+            labelMonthNext: 'Следующий месяц',
+            labelMonthPrev: 'Предыдущий месяц',
+            labelMonthSelect: 'Выбрать месяц',
+            labelYearSelect: 'Выбрать год',
+            monthsFull: [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь' ],
+            monthsShort: [ 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек' ],
+            weekdaysFull: [ 'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота' ],
+            weekdaysShort: [ 'Вос', 'Пон', 'Вт', 'Ср', 'Чт', 'Пят', 'Суб' ],
+            today: 'Сегодня',
+            clear: 'Очистить',
+            close: 'Закрыть',
+            weekdaysLetter: [ 'В', 'П', 'В', 'С', 'Ч', 'П', 'С' ],
+            format: 'dd/mm/yyyy' }]" name="birthday" formControlName="birthday" placeholder=" ">
         <label for="birthday">Дата рождения</label>
       </div>
       <div class="input-field col s4 remove-margin">
@@ -30,8 +45,21 @@
         </div>
       </div>
     </div>
-    <input class="waves-effect waves-light btn" value="Изменить" type="submit" [disabled]="editForm.invalid" >
+    <input class="waves-effect waves-light btn" value="{{btnValue}}" type="submit" [disabled]="editForm.invalid" >
     <a class="waves-effect waves-light btn" (click)="goBack()">Назад</a>
+    <a class="waves-effect waves-light btn red lighten-2" *ngIf="currentEmploye?.id" (click)="removeConfirmEmploye()">Удалить</a>
   </form>
     {{errMessage}}
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <h4>Вы действительно хотите удалить {{currentEmploye?.lastName}}</h4>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Закрыть</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="removeEmploye()">Удалить</a>
+  </div>
 </div>
