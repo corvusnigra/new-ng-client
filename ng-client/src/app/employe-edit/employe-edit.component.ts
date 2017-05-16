@@ -44,8 +44,7 @@ export class EmployeEditComponent implements OnInit {
         this.service.getEmploye(this.id).subscribe(employe => {
           this.currentEmploye = employe;
           this.editForm.patchValue(employe);
-          this.editForm.controls['active'].patchValue(employe.active ? [true] : [false]);
-          console.log(employe);
+          // this.editForm.controls['active'].patchValue(employe.active ? [true] : [false]);
 
         });
 
@@ -75,7 +74,10 @@ export class EmployeEditComponent implements OnInit {
     this.currentEmploye.lastName = form.value.lastName;
     this.currentEmploye.birthday = form.value.birthday;
     this.currentEmploye.salary = form.value.salary;
-    this.currentEmploye.active = Array.isArray(form.value.active) ? form.value.active[0] : form.value.active;
+    this.currentEmploye.active = form.value.active;
+    // this.currentEmploye.active = Array.isArray(form.value.active) ? form.value.active[0] : form.value.active;
+
+    console.log(form.value.active)
 
 
     if (this.currentEmploye.id) {
