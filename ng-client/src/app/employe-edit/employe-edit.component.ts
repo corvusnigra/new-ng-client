@@ -77,7 +77,6 @@ export class EmployeEditComponent implements OnInit {
     this.currentEmploye.salary = form.value.salary;
     this.currentEmploye.active = Array.isArray(form.value.active) ? form.value.active[0] : form.value.active;
 
-    console.log(form.value.active);
 
     if (this.currentEmploye.id) {
 
