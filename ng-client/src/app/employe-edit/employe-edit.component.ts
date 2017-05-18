@@ -1,7 +1,7 @@
 import {Component, OnInit, EventEmitter} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, NgForm} from "@angular/forms";
 import {EmployeService} from "../shared/employe.service";
-import {Employe} from "../shared/employe";
+import {Employe} from "../shared/_models/employe";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
 import {MaterializeAction} from 'angular2-materialize';

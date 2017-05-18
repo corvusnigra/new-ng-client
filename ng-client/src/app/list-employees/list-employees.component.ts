@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EmployeService} from "../shared/employe.service";
-import {Employe} from "../shared/employe";
+import {Employe} from "../shared/_models/employe";
 import { Router } from "@angular/router";
 import {SearchPipe} from "../shared/search.pipe";
 

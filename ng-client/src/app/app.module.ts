@@ -13,6 +13,9 @@ import { ListDepartmentsComponent } from './list-departments/list-departments.co
 import { DepartmentEditComponent } from './department-edit/department-edit.component';
 import {EmployeService} from "./shared/employe.service";
 import {SearchPipe} from "./shared/search.pipe";
+import {AuthGuard} from "./shared/_guards/auth.guard";
+import {AlertComponent} from "./shared/_directives/alert.component";
+import {AuthenticationService} from "./shared/_services/authentication.service";
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import {SearchPipe} from "./shared/search.pipe";
     EmployeDetailComponent,
     ListDepartmentsComponent,
     DepartmentEditComponent,
-    SearchPipe
+    SearchPipe,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,9 @@ import {SearchPipe} from "./shared/search.pipe";
     ReactiveFormsModule
   ],
   providers: [
-    EmployeService
+    EmployeService,
+    AuthGuard,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
